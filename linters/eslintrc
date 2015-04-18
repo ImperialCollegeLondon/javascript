@@ -43,6 +43,7 @@
     "no-dupe-keys": 2,
     "strict": 0,
     "camelcase": [ 2, { "properties": "never" } ],
-    "space-in-brackets": [ 2, "always", { "propertyName": false }]
+    "space-in-brackets": [ 2, "always", { "propertyName": false }],
+    "max-len": [ 1, 80, 2 ]
   }
 }
