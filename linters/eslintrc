@@ -44,6 +44,7 @@
     "strict": 0,
     "camelcase": [ 2, { "properties": "never" } ],
     "space-in-brackets": [ 2, "always", { "propertyName": false }],
-    "max-len": [ 1, 80, 2 ]
+    "max-len": [ 1, 80, 2 ],
+    "max-params": [ 1, 3 ]
   }
 }
