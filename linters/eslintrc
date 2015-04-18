@@ -41,6 +41,6 @@
     "func-names": 2,
     "key-spacing": 2,
     "no-dupe-keys": 2,
-    "strict": 2
+    "strict": 0
   }
 }
