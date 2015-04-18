@@ -42,6 +42,7 @@
     "key-spacing": 2,
     "no-dupe-keys": 2,
     "strict": 0,
-    "camelcase": [ 2, { "properties": "never" } ]
+    "camelcase": [ 2, { "properties": "never" } ],
+    "space-in-brackets": [ 2, "always", { "propertyName": false }]
   }
 }
