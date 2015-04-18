@@ -28,7 +28,7 @@
     "space-before-blocks": 2,
     "comma-dangle": [ 2, "never" ],
     "comma-style": 2,
-    "semi": [ 2, always ],
+    "semi": [ 2, "always" ],
     "semi-spacing": 2,
     "no-extra-boolean-cast": 2,
     "space-before-function-paren": [ 2, "never" ],
