@@ -31,7 +31,7 @@
     "semi": [ 2, "always" ],
     "semi-spacing": 2,
     "no-extra-boolean-cast": 2,
-    "space-before-function-paren": [ 2, "never" ],
+    "space-before-function-paren": [ 2, { "anonymous": "always", "named": "never" } ],
     "no-spaced-func": 2,
     "no-wrap-func": 2,
     "one-var": [ 2, "never" ],
