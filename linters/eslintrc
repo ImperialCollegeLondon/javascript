@@ -41,6 +41,7 @@
     "func-names": 0,
     "key-spacing": 2,
     "no-dupe-keys": 2,
-    "strict": 0
+    "strict": 0,
+    "camelcase": [ 2, { "properties": "never" } ]
   }
 }
