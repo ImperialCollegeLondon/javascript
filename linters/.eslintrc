@@ -143,6 +143,12 @@
     "space-before-function-paren": [2, "never"], // http://eslint.org/docs/rules/space-before-function-paren
     "space-infix-ops": 2,            // http://eslint.org/docs/rules/space-infix-ops
     "space-return-throw-case": 2,    // http://eslint.org/docs/rules/space-return-throw-case
-    "spaced-line-comment": 2         // http://eslint.org/docs/rules/spaced-line-comment
+    "spaced-line-comment": 2,         // http://eslint.org/docs/rules/spaced-line-comment
+    "space-in-brackets": [2, "always", { // http://eslint.org/docs/rules/space-in-brackets
+      "propertyName": false
+    }],
+    "max-len": [1, 80, 2],            // http://eslint.org/docs/rules/max-len
+    "max-params": [1, 3],             // http://eslint.org/docs/rules/max-params
+    "handle-callback-err": [2, "error"] // // http://eslint.org/docs/rules/handle-callback-err
   }
 }
