@@ -1,9 +1,15 @@
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-# Airbnb JavaScript Style Guide() {
+# CGPS JavaScript Style Guide() {
 
-*A mostly reasonable approach to JavaScript*
+*Evolved from Airbnb's mostly reasonable approach to JavaScript*
 
+## How to Use
+
+Install [ESLint](http://eslint.org) and copy the configuration file to your project root:
+```
+cp node_modules/cgps-style/linters/.eslintrc ./.eslintrc
+```
 
 ## Table of Contents
 
