@@ -144,6 +144,10 @@
     "space-infix-ops": 2,            // http://eslint.org/docs/rules/space-infix-ops
     "space-return-throw-case": 2,    // http://eslint.org/docs/rules/space-return-throw-case
     "spaced-line-comment": 2,         // http://eslint.org/docs/rules/spaced-line-comment
+
+/**
+ * CGPS
+ */
     "space-in-brackets": [2, "always", { // http://eslint.org/docs/rules/space-in-brackets
       "propertyName": false
     }],
