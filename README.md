@@ -7,9 +7,11 @@
 <<<<<<< HEAD
 ## How to Use
 
-Install [ESLint](http://eslint.org) and copy the configuration file to your project root:
-```
-cp node_modules/cgps-style/linters/.eslintrc ./.eslintrc
+Install [ESLint](http://eslint.org) and add the following to your project's `.eslintrc` file:
+```json
+{
+  "extends": "./node_modules/cgps-style/linters/.eslintrc",
+}
 ```
 =======
 [For the ES5-only guide click here](es5/).
