@@ -4,7 +4,6 @@
 
 *Evolved from Airbnb's mostly reasonable approach to JavaScript*
 
-<<<<<<< HEAD
 ## How to Use
 
 Install [ESLint](http://eslint.org) and add the following to your project's `.eslintrc` file:
@@ -15,7 +14,6 @@ Install [ESLint](http://eslint.org) and add the following to your project's `.es
 ```
 =======
 [For the ES5-only guide click here](es5/).
->>>>>>> master
 
 ## Table of Contents
 
