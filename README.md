@@ -15,7 +15,7 @@ Install [ESLint](http://eslint.org) and add the following to your project's `.es
 For es5 projects use the following:
 ```json
 {
-  "extends": "./node_modules/cgps-style/linters/.eslintrc-es5",
+  "extends": "./node_modules/cgps-style/es5/.eslintrc",
 }
 ```
 =======

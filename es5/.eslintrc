@@ -1,6 +1,6 @@
-// Use this file as a starting point for es5 projects.
+// Extend this file as a starting point for es5 projects.
 {
-  "extends": "./.eslintrc",
+  "extends": "../linters/.eslintrc",
   "ecmaFeatures": {
     "arrowFunctions": false,
     "blockBindings": false,
@@ -21,7 +21,6 @@
   },
   "rules": {
     "no-var": 0,
-    "comma-dangle": 0,
-    "no-undef": 0
+    "comma-dangle": 0
   }
 }
