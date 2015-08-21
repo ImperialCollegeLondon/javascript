@@ -13,6 +13,7 @@
     "space-before-function-paren": [2, { // http://eslint.org/docs/rules/space-before-function-paren
       "anonymous": "always",
       "named": "never"
-    }]
+    }],
+    "no-undef": 2                 // http://eslint.org/docs/rules/no-undef
   }
 }

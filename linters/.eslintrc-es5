@@ -1,0 +1,27 @@
+// Use this file as a starting point for es5 projects.
+{
+  "extends": "./.eslintrc",
+  "ecmaFeatures": {
+    "arrowFunctions": false,
+    "blockBindings": false,
+    "classes": false,
+    "defaultParams": false,
+    "destructuring": false,
+    "forOf": false,
+    "generators": false,
+    "modules": false,
+    "objectLiteralComputedProperties": false,
+    "objectLiteralDuplicateProperties": false,
+    "objectLiteralShorthandMethods": false,
+    "objectLiteralShorthandProperties": false,
+    "spread": false,
+    "superInFunctions": false,
+    "templateStrings": false,
+    "jsx": false
+  },
+  "rules": {
+    "no-var": 0,
+    "comma-dangle": 0,
+    "no-undef": 0
+  }
+}

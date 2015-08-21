@@ -4,7 +4,6 @@
 
 *Evolved from Airbnb's mostly reasonable approach to JavaScript*
 
-<<<<<<< HEAD
 ## How to Use
 
 Install [ESLint](http://eslint.org) and add the following to your project's `.eslintrc` file:
@@ -13,9 +12,14 @@ Install [ESLint](http://eslint.org) and add the following to your project's `.es
   "extends": "./node_modules/cgps-style/linters/.eslintrc",
 }
 ```
+For es5 projects use the following:
+```json
+{
+  "extends": "./node_modules/cgps-style/linters/.eslintrc-es5",
+}
+```
 =======
 [For the ES5-only guide click here](es5/).
->>>>>>> master
 
 ## Table of Contents
 
