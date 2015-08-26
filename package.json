@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/ImperialCollegeLondon/javascript/issues"
   },
-  "homepage": "https://github.com/ImperialCollegeLondon/javascript"
+  "homepage": "https://github.com/ImperialCollegeLondon/javascript",
+  "dependencies": {
+    "eslint-plugin-react": "^3.3.0"
+  }
 }
