@@ -1,5 +1,6 @@
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+
 # CGPS JavaScript Style Guide() {
 
 *Evolved from Airbnb's mostly reasonable approach to JavaScript*
@@ -18,8 +19,12 @@ For es5 projects use the following:
   "extends": "./node_modules/cgps-style/es5/.eslintrc",
 }
 ```
-=======
-[For the ES5-only guide click here](es5/).
+
+Other Style Guides
+ - [ES5](es5/)
+ - [React](react/)
+ - [CSS & Sass](https://github.com/airbnb/css)
+ - [Ruby](https://github.com/airbnb/ruby)
 
 ## Table of Contents
 
@@ -56,7 +61,7 @@ For es5 projects use the following:
   1. [In the Wild](#in-the-wild)
   1. [Translation](#translation)
   1. [The JavaScript Style Guide Guide](#the-javascript-style-guide-guide)
-  1. [Chat With Us About Javascript](#chat-with-us-about-javascript)
+  1. [Chat With Us About JavaScript](#chat-with-us-about-javascript)
   1. [Contributors](#contributors)
   1. [License](#license)
 
@@ -457,7 +462,7 @@ For es5 projects use the following:
       return `How are you, ${name}?`;
     }
     ```
-  - [6.5](#6.5) <a name='6.5'></a> Never use eval() on a string, it opens too many vulnerabilities.
+  - [6.5](#6.5) <a name='6.5'></a> Never use `eval()` on a string, it opens too many vulnerabilities.
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -566,7 +571,7 @@ For es5 projects use the following:
     }
     ```
 
-  - [7.8](#7.8) <a name='7.8'></a> Avoid side effects with default parameters
+  - [7.8](#7.8) <a name='7.8'></a> Avoid side effects with default parameters.
 
   > Why? They are confusing to reason about.
 
@@ -582,7 +587,21 @@ For es5 projects use the following:
   count();  // 3
   ```
 
-- [7.9](#7.9) <a name='7.9'></a> Never use the Function constructor to create a new function.
+  - [7.9](#7.9) <a name='7.9'></a> Always put default parameters last.
+
+    ```javascript
+    // bad
+    function handleThings(opts = {}, name) {
+      // ...
+    }
+
+    // good
+    function handleThings(name, opts = {}) {
+      // ...
+    }
+    ```
+
+- [7.10](#7.10) <a name='7.10'></a> Never use the Function constructor to create a new function.
 
   > Why? Creating a function in this way evaluates a string similarly to eval(), which opens vulnerabilities.
 
@@ -607,16 +626,18 @@ For es5 projects use the following:
     ```javascript
     // bad
     [1, 2, 3].map(function (x) {
-      return x * x;
+      const y = x + 1;
+      return x * y;
     });
 
     // good
     [1, 2, 3].map((x) => {
-      return x * x;
+      const y = x + 1;
+      return x * y;
     });
     ```
 
-  - [8.2](#8.2) <a name='8.2'></a> If the function body fits on one line and there is only a single argument, feel free to omit the braces and parentheses, and use the implicit return. Otherwise, add the parentheses, braces, and use a `return` statement.
+  - [8.2](#8.2) <a name='8.2'></a> If the function body consists of a single expression, feel free to omit the braces and use the implicit return. Otherwise use a `return` statement.
 
   > Why? Syntactic sugar. It reads well when multiple functions are chained together.
 
@@ -624,12 +645,50 @@ For es5 projects use the following:
 
     ```javascript
     // good
+    [1, 2, 3].map(number => `A string containing the ${number}.`);
+
+    // bad
+    [1, 2, 3].map(number => {
+      const nextNumber = number + 1;
+      `A string containing the ${nextNumber}.`;
+    });
+
+    // good
+    [1, 2, 3].map(number => {
+      const nextNumber = number + 1;
+      return `A string containing the ${nextNumber}.`;
+    });
+    ```
+
+  - [8.3](#8.3) <a name='8.3'></a> In case the expression spans over multiple lines, wrap it in parentheses for better readability.
+
+  > Why? It shows clearly where the function starts and ends.
+
+    ```js
+    // bad
+    [1, 2, 3].map(number => 'As time went by, the string containing the ' +
+      `${number} became much longer. So we needed to break it over multiple ` +
+      'lines.'
+    );
+
+    // good
+    [1, 2, 3].map(number => (
+      `As time went by, the string containing the ${number} became much ` +
+      'longer. So we needed to break it over multiple lines.'
+    ));
+    ```
+
+
+  - [8.4](#8.4) <a name='8.4'></a> If your function only takes a single argument, feel free to omit the parentheses.
+
+  > Why? Less visual clutter.
+
+    ```js
+    // good
     [1, 2, 3].map(x => x * x);
 
     // good
-    [1, 2, 3].reduce((total, n) => {
-      return total + n;
-    }, 0);
+    [1, 2, 3].reduce((y, x) => x + y);
     ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -1065,7 +1124,7 @@ For es5 projects use the following:
     }
     ```
 
-  - For more information refer to [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting) by [Ben Cherry](http://www.adequatelygood.com/).
+  - For more information refer to [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting/) by [Ben Cherry](http://www.adequatelygood.com/).
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -1370,7 +1429,7 @@ For es5 projects use the following:
     })(this);↵
     ```
 
-  - [18.5](#18.5) <a name='18.5'></a> Use indentation when making long method chains. Use a leading dot, which
+  - [18.6](#18.6) <a name='18.6'></a> Use indentation when making long method chains. Use a leading dot, which
     emphasizes that the line is a method call, not a new statement.
 
     ```javascript
@@ -1410,7 +1469,7 @@ For es5 projects use the following:
         .call(tron.led);
     ```
 
-  - [18.6](#18.6) <a name='18.6'></a> Leave a blank line after blocks and before the next statement.
+  - [18.7](#18.7) <a name='18.7'></a> Leave a blank line after blocks and before the next statement.
 
     ```javascript
     // bad
@@ -1517,14 +1576,14 @@ For es5 projects use the following:
     -    lastName: 'Nightingale'
     +    lastName: 'Nightingale',
     +    inventorOf: ['coxcomb graph', 'modern nursing']
-    }
+    };
 
     // good - git diff with trailing comma
     const hero = {
          firstName: 'Florence',
          lastName: 'Nightingale',
     +    inventorOf: ['coxcomb chart', 'modern nursing'],
-    }
+    };
 
     // bad
     const hero = {
@@ -1576,7 +1635,7 @@ For es5 projects use the following:
     })();
     ```
 
-    [Read more](http://stackoverflow.com/a/7365214/1712802).
+    [Read more](http://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214%237365214).
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -1596,7 +1655,7 @@ For es5 projects use the following:
     const totalScore = String(this.reviewScore);
     ```
 
-  - [21.3](#21.3) <a name='21.3'></a> Use `parseInt` for Numbers and always with a radix for type casting.
+  - [21.3](#21.3) <a name='21.3'></a> Numbers: Use `Number` for type casting and `parseInt` always with a radix for parsing strings.
 
     ```javascript
     const inputValue = '4';
@@ -1866,7 +1925,7 @@ For es5 projects use the following:
 
     ```javascript
     // good
-    $(this).trigger('listingUpdated', { listingId : listing.id });
+    $(this).trigger('listingUpdated', { listingId: listing.id });
 
     ...
 
@@ -1888,6 +1947,9 @@ For es5 projects use the following:
 
     // good
     const $sidebar = $('.sidebar');
+
+    // good
+    const $sidebarBtn = $('.sidebar-btn');
     ```
 
   - [25.2](#25.2) <a name='25.2'></a> Cache jQuery lookups.
@@ -1942,7 +2004,7 @@ For es5 projects use the following:
 
 ## ECMAScript 5 Compatibility
 
-  - [26.1](#26.1) <a name='26.1'></a> Refer to [Kangax](https://twitter.com/kangax/)'s ES5 [compatibility table](http://kangax.github.com/es5-compat-table/).
+  - [26.1](#26.1) <a name='26.1'></a> Refer to [Kangax](https://twitter.com/kangax/)'s ES5 [compatibility table](http://kangax.github.io/es5-compat-table/).
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -1968,20 +2030,28 @@ For es5 projects use the following:
 
 ## Testing
 
-  - [28.1](#28.1) <a name='28.1'></a> **Yup.**
+  - [28.1](#28.1) <a name="28.1"></a> **Yup.**
 
     ```javascript
-    function() {
+    function () {
       return true;
     }
     ```
+
+  - [28.2](#28.2) <a name="28.2"></a> **No, but seriously**:
+   - Whichever testing framework you use, you should be writing tests!
+   - Strive to write many small pure functions, and minimize where mutations occur.
+   - Be cautious about stubs and mocks - they can make your tests more brittle.
+   - We primarily use [`mocha`](https://www.npmjs.com/package/mocha) at Airbnb. [`tape`](https://www.npmjs.com/package/tape) is also used occasionally for small, separate modules.
+   - 100% test coverage is a good goal to strive for, even if it's not always practical to reach it.
+   - Whenever you fix a bug, _write a regression test_. A bug fixed without a regression test is almost certainly going to break again in the future.
 
 **[⬆ back to top](#table-of-contents)**
 
 
 ## Performance
 
-  - [On Layout & Web Performance](http://kellegous.com/j/2013/01/26/layout-performance/)
+  - [On Layout & Web Performance](http://www.kellegous.com/j/2013/01/26/layout-performance/)
   - [String vs Array Concat](http://jsperf.com/string-vs-array-concat/2)
   - [Try/Catch Cost In a Loop](http://jsperf.com/try-catch-in-loop-cost)
   - [Bang Function](http://jsperf.com/bang-function)
@@ -2010,18 +2080,18 @@ For es5 projects use the following:
 
   - Code Style Linters
     + [ESlint](http://eslint.org/) - [Airbnb Style .eslintrc](https://github.com/airbnb/javascript/blob/master/linters/.eslintrc)
-    + [JSHint](http://www.jshint.com/) - [Airbnb Style .jshintrc](https://github.com/airbnb/javascript/blob/master/linters/jshintrc)
+    + [JSHint](http://jshint.com/) - [Airbnb Style .jshintrc](https://github.com/airbnb/javascript/blob/master/linters/jshintrc)
     + [JSCS](https://github.com/jscs-dev/node-jscs) - [Airbnb Style Preset](https://github.com/jscs-dev/node-jscs/blob/master/presets/airbnb.json)
 
 **Other Style Guides**
 
   - [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
-  - [jQuery Core Style Guidelines](http://docs.jquery.com/JQuery_Core_Style_Guidelines)
-  - [Principles of Writing Consistent, Idiomatic JavaScript](https://github.com/rwldrn/idiomatic.js/)
+  - [jQuery Core Style Guidelines](http://contribute.jquery.org/style-guide/js/)
+  - [Principles of Writing Consistent, Idiomatic JavaScript](https://github.com/rwaldron/idiomatic.js)
 
 **Other Styles**
 
-  - [Naming this in nested functions](https://gist.github.com/4135065) - Christian Johansen
+  - [Naming this in nested functions](https://gist.github.com/cjohansen/4135065) - Christian Johansen
   - [Conditional Callbacks](https://github.com/airbnb/javascript/issues/52) - Ross Allen
   - [Popular JavaScript Coding Conventions on Github](http://sideeffect.kr/popularconvention/#javascript) - JeongHoon Byun
   - [Multiple var statements in JavaScript, not superfluous](http://benalman.com/news/2012/05/multiple-var-statements-javascript/) - Ben Alman
@@ -2048,7 +2118,7 @@ For es5 projects use the following:
   - [Human JavaScript](http://humanjavascript.com/) - Henrik Joreteg
   - [Superhero.js](http://superherojs.com/) - Kim Joar Bekkelund, Mads Mobæk, & Olav Bjorkoy
   - [JSBooks](http://jsbooks.revolunet.com/) - Julien Bouquillon
-  - [Third Party JavaScript](http://manning.com/vinegar/) - Ben Vinegar and Anton Kovalyov
+  - [Third Party JavaScript](https://www.manning.com/books/third-party-javascript) - Ben Vinegar and Anton Kovalyov
   - [Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript](http://amzn.com/0321812182) - David Herman
   - [Eloquent JavaScript](http://eloquentjavascript.net/) - Marijn Haverbeke
   - [You Don't Know JS: ES6 & Beyond](http://shop.oreilly.com/product/0636920033769.do) - Kyle Simpson
@@ -2058,25 +2128,25 @@ For es5 projects use the following:
   - [DailyJS](http://dailyjs.com/)
   - [JavaScript Weekly](http://javascriptweekly.com/)
   - [JavaScript, JavaScript...](http://javascriptweblog.wordpress.com/)
-  - [Bocoup Weblog](http://weblog.bocoup.com/)
+  - [Bocoup Weblog](https://bocoup.com/weblog)
   - [Adequately Good](http://www.adequatelygood.com/)
-  - [NCZOnline](http://www.nczonline.net/)
+  - [NCZOnline](https://www.nczonline.net/)
   - [Perfection Kills](http://perfectionkills.com/)
   - [Ben Alman](http://benalman.com/)
   - [Dmitry Baranovskiy](http://dmitry.baranovskiy.com/)
   - [Dustin Diaz](http://dustindiaz.com/)
-  - [nettuts](http://net.tutsplus.com/?s=javascript)
+  - [nettuts](http://code.tutsplus.com/?s=javascript)
 
 **Podcasts**
 
-  - [JavaScript Jabber](http://devchat.tv/js-jabber/)
+  - [JavaScript Jabber](https://devchat.tv/js-jabber/)
 
 
 **[⬆ back to top](#table-of-contents)**
 
 ## In the Wild
 
-  This is a list of organizations that are using this style guide. Send us a pull request or open an issue and we'll add you to the list.
+  This is a list of organizations that are using this style guide. Send us a pull request and we'll add you to the list.
 
   - **Aan Zee**: [AanZee/javascript](https://github.com/AanZee/javascript)
   - **Adult Swim**: [adult-swim/javascript](https://github.com/adult-swim/javascript)
@@ -2085,9 +2155,11 @@ For es5 projects use the following:
   - **Avalara**: [avalara/javascript](https://github.com/avalara/javascript)
   - **Billabong**: [billabong/javascript](https://github.com/billabong/javascript)
   - **Blendle**: [blendle/javascript](https://github.com/blendle/javascript)
+  - **ComparaOnline**: [comparaonline/javascript](https://github.com/comparaonline/javascript-style-guide)
   - **Compass Learning**: [compasslearning/javascript-style-guide](https://github.com/compasslearning/javascript-style-guide)
   - **DailyMotion**: [dailymotion/javascript](https://github.com/dailymotion/javascript)
   - **Digitpaint** [digitpaint/javascript](https://github.com/digitpaint/javascript)
+  - **Ecosia**: [ecosia/javascript](https://github.com/ecosia/javascript)
   - **Evernote**: [evernote/javascript-style-guide](https://github.com/evernote/javascript-style-guide)
   - **ExactTarget**: [ExactTarget/javascript](https://github.com/ExactTarget/javascript)
   - **Expensify** [Expensify/Style-Guide](https://github.com/Expensify/Style-Guide/blob/master/javascript.md)
@@ -2096,13 +2168,15 @@ For es5 projects use the following:
   - **General Electric**: [GeneralElectric/javascript](https://github.com/GeneralElectric/javascript)
   - **GoodData**: [gooddata/gdc-js-style](https://github.com/gooddata/gdc-js-style)
   - **Grooveshark**: [grooveshark/javascript](https://github.com/grooveshark/javascript)
-  - **How About We**: [howaboutwe/javascript](https://github.com/howaboutwe/javascript)
+  - **How About We**: [howaboutwe/javascript](https://github.com/howaboutwe/javascript-style-guide)
   - **Huballin**: [huballin/javascript](https://github.com/huballin/javascript)
+  - **HubSpot**: [HubSpot/javascript](https://github.com/HubSpot/javascript)
+  - **Hyper**: [hyperoslo/javascript-playbook](https://github.com/hyperoslo/javascript-playbook/blob/master/style.md)
   - **InfoJobs**: [InfoJobs/JavaScript-Style-Guide](https://github.com/InfoJobs/JavaScript-Style-Guide)
   - **Intent Media**: [intentmedia/javascript](https://github.com/intentmedia/javascript)
   - **Jam3**: [Jam3/Javascript-Code-Conventions](https://github.com/Jam3/Javascript-Code-Conventions)
   - **JSSolutions**: [JSSolutions/javascript](https://github.com/JSSolutions/javascript)
-  - **Kinetica Solutions**: [kinetica/javascript](https://github.com/kinetica/javascript)
+  - **Kinetica Solutions**: [kinetica/javascript](https://github.com/kinetica/Javascript-style-guide)
   - **Mighty Spring**: [mightyspring/javascript](https://github.com/mightyspring/javascript)
   - **MinnPost**: [MinnPost/javascript](https://github.com/MinnPost/javascript)
   - **MitocGroup**: [MitocGroup/javascript](https://github.com/MitocGroup/javascript)
@@ -2121,7 +2195,7 @@ For es5 projects use the following:
   - **SeekingAlpha**: [seekingalpha/javascript-style-guide](https://github.com/seekingalpha/javascript-style-guide)
   - **Shutterfly**: [shutterfly/javascript](https://github.com/shutterfly/javascript)
   - **Springload**: [springload/javascript](https://github.com/springload/javascript)
-  - **StudentSphere**: [studentsphere/javascript](https://github.com/studentsphere/javascript)
+  - **StudentSphere**: [studentsphere/javascript](https://github.com/studentsphere/guide-javascript)
   - **Target**: [target/javascript](https://github.com/target/javascript)
   - **TheLadders**: [TheLadders/javascript](https://github.com/TheLadders/javascript)
   - **T4R Technology**: [T4R-Technology/javascript](https://github.com/T4R-Technology/javascript)
@@ -2139,8 +2213,8 @@ For es5 projects use the following:
   - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [armoucar/javascript-style-guide](https://github.com/armoucar/javascript-style-guide)
   - ![bg](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bulgaria.png) **Bulgarian**: [borislavvv/javascript](https://github.com/borislavvv/javascript)
   - ![ca](https://raw.githubusercontent.com/fpmweb/javascript-style-guide/master/img/catala.png) **Catalan**: [fpmweb/javascript-style-guide](https://github.com/fpmweb/javascript-style-guide)
-  - ![tw](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Taiwan.png) **Chinese(Traditional)**: [jigsawye/javascript](https://github.com/jigsawye/javascript)
-  - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese(Simplified)**: [sivan/javascript-style-guide](https://github.com/sivan/javascript-style-guide)
+  - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: [sivan/javascript-style-guide](https://github.com/sivan/javascript-style-guide)
+  - ![tw](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Taiwan.png) **Chinese (Traditional)**: [jigsawye/javascript](https://github.com/jigsawye/javascript)
   - ![fr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/France.png) **French**: [nmussy/javascript-style-guide](https://github.com/nmussy/javascript-style-guide)
   - ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **German**: [timofurrer/javascript-style-guide](https://github.com/timofurrer/javascript-style-guide)
   - ![it](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Italy.png) **Italian**: [sinkswim/javascript-style-guide](https://github.com/sinkswim/javascript-style-guide)
@@ -2190,5 +2264,9 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 **[⬆ back to top](#table-of-contents)**
+
+## Amendments
+
+We encourage you to fork this guide and change the rules to fit your team's style guide. Below, you may list some amendments to the style guide. This allows you to periodically update your style guide without having to deal with merge conflicts.
 
 # };
