@@ -1,7 +1,6 @@
 import test from 'tape';
 import { CLIEngine } from 'eslint';
 import eslintrc from '../';
-import baseConfig from '../base';
 import reactRules from '../rules/react';
 
 const cli = new CLIEngine({
@@ -9,13 +8,14 @@ const cli = new CLIEngine({
   baseConfig: eslintrc,
 
   // This rule fails when executing on text.
-  rules: {indent: 0},
+  rules: { indent: 0 },
 });
 
 function lint(text) {
   // @see http://eslint.org/docs/developer-guide/nodejs-api.html#executeonfiles
   // @see http://eslint.org/docs/developer-guide/nodejs-api.html#executeontext
-  return cli.executeOnText(text).results[0];
+  const linter = cli.executeOnText(text);
+  return linter.results[0];
 }
 
 function wrapComponent(body) {
@@ -29,8 +29,7 @@ ${body}
 
 test('validate react prop order', t => {
   t.test('make sure our eslintrc has React linting dependencies', t => {
-    t.plan(2);
-    t.equal(baseConfig.parser, 'babel-eslint', 'uses babel-eslint');
+    t.plan(1);
     t.equal(reactRules.plugins[0], 'react', 'uses eslint-plugin-react');
   });
 
