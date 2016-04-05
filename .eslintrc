@@ -1,6 +1,6 @@
 // Extend this file as a starting point for your project's .eslintrc.
 {
-  "extends": "../packages/eslint-config-airbnb/.eslintrc",
+  "extends": "airbnb",
   "rules": {
     "spaced-comment": 2,         // http://eslint.org/docs/rules/spaced-comment
     "object-curly-spacing": [2, "always"], // http://eslint.org/docs/rules/object-curly-spacing
@@ -13,6 +13,7 @@
       "anonymous": "always",
       "named": "never"
     }],
-    "no-undef": 2                 // http://eslint.org/docs/rules/no-undef
+    "no-undef": 2,                 // http://eslint.org/docs/rules/no-undef
+    react/no-multi-comp": 0,
   }
 }
